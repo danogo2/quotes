@@ -35,7 +35,8 @@ body {
 
 .quote-container {
   background-color: var(--color-background-quote);
-  max-width: 900px;
+  width: 900px;
+  max-width: 100%;
   padding: 2rem;
   border-radius: 10px;
   box-shadow: rgb(255, 255, 255) 0px 0px 0px 0px,
@@ -77,25 +78,41 @@ i.fa-solid.fa-quote-left {
   justify-content: space-between;
 }
 
-.button-twitter {
+button {
   cursor: pointer;
-  border: none;
+  font-family: inherit;
+  font-weight: 700;
+  box-shadow: 0 0.3rem rgba(121, 121, 121, 0.6);
   border-radius: 6px;
+  border: 2px solid transparent;
+  transition: all 0.1s ease;
 }
 
-i.fa-brands.fa-twitter {
-  font-size: 1.2rem;
-  padding: 0 0.4rem;
+button:hover {
+  /* filter: brightness(80%); */
+  background-color: var(--color-black);
+  color: var(--color-white);
+  border: 2px solid var(--color-white);
 }
+
+button:active {
+  transform: translateY(0.3rem);
+  box-shadow: none;
+}
+
+.button-twitter,
+.button-copy {
+  font-size: 1.2rem;
+  padding: 0 0.3rem;
+}
+
+/* .button-twitter:hover {
+  color: #38a1f3;
+} */
 
 .button-new-quote {
   font-size: 1rem;
-  padding: 0.4rem;
-  cursor: pointer;
-  font-family: 'Montserrat', Helvetica, Arial, sans-serif;
-  font-weight: 700;
-  border-radius: 6px;
-  border: none;
+  padding: 0.3rem;
 }
 
 /* Media Queries */
