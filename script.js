@@ -1,9 +1,11 @@
 import { quotesApi } from './utils/api-quotes.js';
 
 const quoteEl = document.querySelector('#quote');
+const quoteTextContainer = document.querySelector('.quote-text');
 const authorEl = document.querySelector('#author');
-const btnNewQuote = document.querySelector('.button-new-quote');
-const btnCopyToClipboard = document.querySelector('.button-copy');
+const newQuoteBtn = document.querySelector('.button-new-quote');
+const copyToClipboardBtn = document.querySelector('.button-copy');
+const tweetBtn = document.querySelector('#twitter');
 
 const state = {
   quote:
@@ -17,9 +19,7 @@ const getNewQuote = async () => {
     const response = await fetch(apiUrl, {
       method: 'GET',
     });
-    console.log(response);
     const quoteObj = await response.json();
-    console.log(quoteObj);
     const { q, a } = quoteObj;
     state.quote = q;
     state.author = a;
@@ -32,6 +32,12 @@ const getNewQuote = async () => {
 
 const displayQuote = () => {
   const { quote, author } = state;
+  // make font size smaller for longer quotes
+  if (quote.length > 90) {
+    quoteTextContainer.classList.add('quote-long');
+  } else {
+    quoteTextContainer.classList.remove('quote-long');
+  }
   quoteEl.textContent = quote;
   authorEl.textContent = author;
 };
@@ -42,12 +48,23 @@ const copyToClipboard = () => {
   }
 };
 
-displayQuote();
+const tweetQuote = () => {
+  const twitterUrl = `https://twitter.com/intent/tweet?text=${state.quote} - ${state.author}`;
+  window.open(twitterUrl, '_blank');
+};
 
-btnNewQuote.addEventListener('click', function () {
+// event listeners
+newQuoteBtn.addEventListener('click', function () {
   getNewQuote();
 });
 
-btnCopyToClipboard.addEventListener('click', function () {
+copyToClipboardBtn.addEventListener('click', function () {
   copyToClipboard();
 });
+
+tweetBtn.addEventListener('click', function () {
+  tweetQuote();
+});
+
+// on load
+displayQuote();

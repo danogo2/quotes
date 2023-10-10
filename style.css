@@ -49,25 +49,29 @@ body {
   font-size: 2rem;
 }
 
-.long-quote {
+.quote-long {
   font-size: 1.6rem;
 }
 
 i.fa-solid.fa-quote-left {
   font-size: 3rem;
   margin-right: 1rem;
-  transform: translateY(-6px);
 }
 
 /* Author */
 .quote-author {
-  margin-top: 1rem;
+  margin-top: 1.6rem;
 }
 
 #author {
   font-size: 1.1rem;
   font-weight: 400;
   font-style: italic;
+}
+
+#quote {
+  width: 100%;
+  line-height: 48px;
 }
 
 /* Buttons */
@@ -104,6 +108,7 @@ button:active {
 .button-copy {
   font-size: 1.2rem;
   padding: 0 0.3rem;
+  margin-right: 0.4rem;
 }
 
 /* .button-twitter:hover {
@@ -129,6 +134,10 @@ button:active {
   .quote-text {
     display: block;
     font-size: 1.4rem;
+  }
+
+  .quote-long {
+    font-size: 1.2rem;
   }
 
   #author {
