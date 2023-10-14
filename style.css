@@ -33,7 +33,7 @@ body {
   color: var(--color-white);
 }
 
-.quote-container {
+.quote-card {
   background-color: var(--color-background-quote);
   width: 900px;
   max-width: 100%;
@@ -44,9 +44,23 @@ body {
     rgba(0, 0, 0, 0.1) 0px 4px 6px -4px;
 }
 
-.quote-text {
+.quote-card-top {
   display: flex;
+}
+
+.quote-container,
+.quote-container--placeholder {
+  display: flex;
+  flex-direction: column;
   font-size: 2rem;
+  flex-basis: 100%;
+}
+
+.quote-container--placeholder {
+  display: none;
+  color: transparent;
+  border-radius: 8px;
+  background: linear-gradient(to bottom right, #222, #444);
 }
 
 .quote-long {
@@ -59,14 +73,9 @@ i.fa-solid.fa-quote-left {
 }
 
 /* Author */
-.quote-author {
-  margin-top: 1.6rem;
-}
-
-#author {
-  font-size: 1.1rem;
-  font-weight: 400;
-  font-style: italic;
+.quote-author,
+.quote-author--placeholder {
+  margin-top: 0.6rem;
 }
 
 #quote {
@@ -74,10 +83,34 @@ i.fa-solid.fa-quote-left {
   line-height: 48px;
 }
 
-/* Buttons */
-.button-container {
+.quote--placeholder {
+  background: linear-gradient(to bottom left, #444, #555);
+  border-radius: 8px;
+  display: block;
+  width: 90%;
+  margin: 0 auto;
   margin-top: 1rem;
-  padding: 0.4rem;
+  line-height: 38px;
+}
+
+#author,
+#author--placeholder {
+  font-size: 1.1rem;
+  font-weight: 400;
+  font-style: italic;
+}
+
+#author--placeholder {
+  background: linear-gradient(to bottom left, #444, #555);
+  border-radius: 8px;
+  display: block;
+  width: 100px;
+  margin: 0.6rem auto;
+}
+
+/* Buttons */
+.buttons-container {
+  margin-top: 1rem;
   display: flex;
   justify-content: space-between;
 }
@@ -127,17 +160,25 @@ button:active {
     padding: 0.6rem;
   }
 
-  .quote-container {
+  .quote-card {
     padding: 1rem;
   }
 
+  .quote-card-top {
+    flex-direction: column;
+  }
+
   .quote-text {
-    display: block;
     font-size: 1.4rem;
+    margin-top: 0.6rem;
   }
 
   .quote-long {
     font-size: 1.2rem;
+  }
+
+  #quote {
+    line-height: 36px;
   }
 
   #author {

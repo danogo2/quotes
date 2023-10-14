@@ -1,8 +1,12 @@
 import { quotesApi } from './utils/api-quotes.js';
 
-const quoteEl = document.querySelector('#quote');
-const quoteTextContainer = document.querySelector('.quote-text');
-const authorEl = document.querySelector('#author');
+const quoteContainer = document.querySelector('.quote-container');
+const quoteContainerPlaceholder = document.querySelector(
+  '.quote-container--placeholder'
+);
+const quoteText = document.querySelector('.quote-text');
+const quoteSpan = document.querySelector('#quote');
+const authorSpan = document.querySelector('#author');
 const newQuoteBtn = document.querySelector('.button-new-quote');
 const copyToClipboardBtn = document.querySelector('.button-copy');
 const tweetBtn = document.querySelector('#twitter');
@@ -15,6 +19,7 @@ const state = {
 
 const getNewQuote = async () => {
   const { apiUrl } = quotesApi;
+  displayPlaceholder();
   try {
     const response = await fetch(apiUrl, {
       method: 'GET',
@@ -27,6 +32,7 @@ const getNewQuote = async () => {
   } catch (error) {
     console.log(error);
     alert(error.message);
+  } finally {
   }
 };
 
@@ -34,12 +40,19 @@ const displayQuote = () => {
   const { quote, author } = state;
   // make font size smaller for longer quotes
   if (quote.length > 90) {
-    quoteTextContainer.classList.add('quote-long');
+    quoteText.classList.add('quote-long');
   } else {
-    quoteTextContainer.classList.remove('quote-long');
+    quoteText.classList.remove('quote-long');
   }
-  quoteEl.textContent = quote;
-  authorEl.textContent = author;
+  quoteSpan.textContent = quote;
+  authorSpan.textContent = author;
+  quoteContainerPlaceholder.style.display = 'none';
+  quoteContainer.style.display = 'flex';
+};
+
+const displayPlaceholder = () => {
+  quoteContainer.style.display = 'none';
+  quoteContainerPlaceholder.style.display = 'flex';
 };
 
 const copyToClipboard = () => {
